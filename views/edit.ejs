@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Resource</title>
+</head>
+<body>
+    <h1>Edit Resource</h1>
+    <form method="POST" action="/edit/<%= resource._id %>" enctype="multipart/form-data">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="<%= resource.name %>" />
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <input type="text" name="description" id="description" value="<%= resource.description %>" />
+        </div>
+        <div>
+            <label for="image">Images:</label>
+            <input type="file" name="image" id="image" />
+            <% if (resource.image && resource.image.data) { %>
+                <img src="data:<%= resource.image.contentType %>;base64,<%= resource.image.data.toString('base64') %>" alt="Previous Image" style="max-width: 200px; height: auto;" />
+            <% } %>
+        </div>
+        <div>
+            <label for="file">File:</label>
+            <input type="file" name="file" id="file" />
+            <% if (resource.file && resource.file.data) { %>
+                <p>Previous File: <%= resource.name %>_file</p>
+            <% } %>
+        </div>
+        <div>
+            <label for="category">Category:</label>
+            <input type="text" name="category" id="category" value="<%= resource.category %>" />
+        </div>
+        <div>
+            <button type="submit">Update Resource</button>
+        </div>
+    </form>
+</body>
+</html>
